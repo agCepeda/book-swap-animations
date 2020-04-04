@@ -13,6 +13,14 @@
 		9F8F1B3F24358E6900890B55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F8F1B3D24358E6900890B55 /* Main.storyboard */; };
 		9F8F1B4124358E6A00890B55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F8F1B4024358E6A00890B55 /* Assets.xcassets */; };
 		9F8F1B4424358E6A00890B55 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F8F1B4224358E6A00890B55 /* LaunchScreen.storyboard */; };
+		9F8F1B4C24358EEC00890B55 /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8F1B4B24358EEC00890B55 /* BookListViewController.swift */; };
+		9F8F1B4F2435905400890B55 /* BookItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8F1B4D2435905400890B55 /* BookItemTableViewCell.swift */; };
+		9F8F1B502435905400890B55 /* BookItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F8F1B4E2435905400890B55 /* BookItemTableViewCell.xib */; };
+		9F8F1B5B2435BCEC00890B55 /* BookSwapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8F1B592435BCEC00890B55 /* BookSwapViewController.swift */; };
+		9F8F1B5C2435BCEC00890B55 /* BookSwapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F8F1B5A2435BCEC00890B55 /* BookSwapViewController.xib */; };
+		9F8F1B5F24368D5D00890B55 /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8F1B5E24368D5D00890B55 /* PopAnimator.swift */; };
+		9F8F1B61243693F300890B55 /* PushAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8F1B60243693F300890B55 /* PushAnimator.swift */; };
+		9F8F1B632436941E00890B55 /* SwapNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8F1B622436941E00890B55 /* SwapNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +32,14 @@
 		9F8F1B4024358E6A00890B55 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F8F1B4324358E6A00890B55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F8F1B4524358E6A00890B55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F8F1B4B24358EEC00890B55 /* BookListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewController.swift; sourceTree = "<group>"; };
+		9F8F1B4D2435905400890B55 /* BookItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookItemTableViewCell.swift; sourceTree = "<group>"; };
+		9F8F1B4E2435905400890B55 /* BookItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookItemTableViewCell.xib; sourceTree = "<group>"; };
+		9F8F1B592435BCEC00890B55 /* BookSwapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSwapViewController.swift; sourceTree = "<group>"; };
+		9F8F1B5A2435BCEC00890B55 /* BookSwapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookSwapViewController.xib; sourceTree = "<group>"; };
+		9F8F1B5E24368D5D00890B55 /* PopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopAnimator.swift; sourceTree = "<group>"; };
+		9F8F1B60243693F300890B55 /* PushAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAnimator.swift; sourceTree = "<group>"; };
+		9F8F1B622436941E00890B55 /* SwapNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +79,24 @@
 				9F8F1B4024358E6A00890B55 /* Assets.xcassets */,
 				9F8F1B4224358E6A00890B55 /* LaunchScreen.storyboard */,
 				9F8F1B4524358E6A00890B55 /* Info.plist */,
+				9F8F1B4B24358EEC00890B55 /* BookListViewController.swift */,
+				9F8F1B4D2435905400890B55 /* BookItemTableViewCell.swift */,
+				9F8F1B4E2435905400890B55 /* BookItemTableViewCell.xib */,
+				9F8F1B592435BCEC00890B55 /* BookSwapViewController.swift */,
+				9F8F1B5A2435BCEC00890B55 /* BookSwapViewController.xib */,
+				9F8F1B5D24368D4700890B55 /* transition */,
 			);
 			path = BookApp;
+			sourceTree = "<group>";
+		};
+		9F8F1B5D24368D4700890B55 /* transition */ = {
+			isa = PBXGroup;
+			children = (
+				9F8F1B5E24368D5D00890B55 /* PopAnimator.swift */,
+				9F8F1B60243693F300890B55 /* PushAnimator.swift */,
+				9F8F1B622436941E00890B55 /* SwapNavigationController.swift */,
+			);
+			path = transition;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +160,8 @@
 				9F8F1B4424358E6A00890B55 /* LaunchScreen.storyboard in Resources */,
 				9F8F1B4124358E6A00890B55 /* Assets.xcassets in Resources */,
 				9F8F1B3F24358E6900890B55 /* Main.storyboard in Resources */,
+				9F8F1B502435905400890B55 /* BookItemTableViewCell.xib in Resources */,
+				9F8F1B5C2435BCEC00890B55 /* BookSwapViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +172,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F8F1B61243693F300890B55 /* PushAnimator.swift in Sources */,
+				9F8F1B5F24368D5D00890B55 /* PopAnimator.swift in Sources */,
+				9F8F1B4F2435905400890B55 /* BookItemTableViewCell.swift in Sources */,
 				9F8F1B3C24358E6900890B55 /* ViewController.swift in Sources */,
+				9F8F1B632436941E00890B55 /* SwapNavigationController.swift in Sources */,
+				9F8F1B4C24358EEC00890B55 /* BookListViewController.swift in Sources */,
 				9F8F1B3824358E6900890B55 /* AppDelegate.swift in Sources */,
+				9F8F1B5B2435BCEC00890B55 /* BookSwapViewController.swift in Sources */,
 				9F8F1B3A24358E6900890B55 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
