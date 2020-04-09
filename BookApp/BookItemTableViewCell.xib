@@ -16,10 +16,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="409" height="202"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3qM-cK-rJd" customClass="BackgroundView" customModule="BookApp" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="409" height="190"/>
-                        <color key="backgroundColor" red="0.98431372549999996" green="0.54117647059999996" blue="0.83137254900000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="3RL-uh-fMH">
                         <rect key="frame" x="25" y="30" width="213.5" height="44.5"/>
                         <subviews>
@@ -77,26 +73,25 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="gVS-xM-wrr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="EZR-UX-7LN"/>
-                    <constraint firstItem="3qM-cK-rJd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Ral-n3-i9w"/>
                     <constraint firstItem="3RL-uh-fMH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="RhI-lL-HIX"/>
                     <constraint firstAttribute="trailing" secondItem="gVS-xM-wrr" secondAttribute="trailing" constant="25" id="SUO-Ag-eDJ"/>
                     <constraint firstAttribute="bottom" secondItem="gVS-xM-wrr" secondAttribute="bottom" constant="30" id="UsF-DE-BSv"/>
-                    <constraint firstAttribute="bottom" secondItem="3qM-cK-rJd" secondAttribute="bottom" id="WwF-k4-gtm"/>
                     <constraint firstItem="3RL-uh-fMH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="pHD-eJ-exD"/>
                     <constraint firstItem="NP0-Yb-IYY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="s1u-P4-U4I"/>
-                    <constraint firstItem="3qM-cK-rJd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="tJh-HP-zxU"/>
                     <constraint firstAttribute="bottom" secondItem="NP0-Yb-IYY" secondAttribute="bottom" constant="35" id="u72-Qu-CGW"/>
-                    <constraint firstAttribute="trailing" secondItem="3qM-cK-rJd" secondAttribute="trailing" id="zpe-el-pFN"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="authorLabel" destination="3HN-kd-EHc" id="t9i-lh-ePP"/>
                 <outlet property="bookImageView" destination="pXq-5J-xTM" id="FHB-8F-ReK"/>
+                <outlet property="coverImageView" destination="pXq-5J-xTM" id="YDH-RX-bj5"/>
+                <outlet property="nameLabel" destination="rod-nP-5pw" id="1SX-sc-UC6"/>
             </connections>
             <point key="canvasLocation" x="112.31884057971016" y="120.53571428571428"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="book1" width="166" height="249.5"/>
+        <image name="book1" width="600" height="888"/>
     </resources>
 </document>

@@ -9,7 +9,21 @@
 import UIKit
 
 class BookItemTableViewCell: UITableViewCell {
+    @IBOutlet weak var animableView: BackgroundView!
     @IBOutlet weak var bookImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var coverImageView: UIImageView!
+    
+    var book: Book? {
+        didSet {
+            guard let book = self.book else { return }
+            contentView.backgroundColor = book.color
+            nameLabel.text = book.name
+            authorLabel.text = book.author
+            coverImageView.image = UIImage(named: book.image)
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,9 +39,4 @@ class BookItemTableViewCell: UITableViewCell {
 }
 
 class BackgroundView: UIView {
-    
-    override func draw(_ rect: CGRect) {
-        
-    }
-    
 }
