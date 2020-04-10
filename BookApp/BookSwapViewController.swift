@@ -11,7 +11,6 @@ import UIKit
 class BookSwapViewController: UIViewController {
     @IBOutlet weak var myBookNameLabel: UILabel!
     @IBOutlet weak var myBookAuthorLabel: UILabel!
-    @IBOutlet weak var myBookQuoteContainer: UIView!
     @IBOutlet weak var myBookQuoteView: QuouteView!
     @IBOutlet weak var myBookImageView: UIImageView!
     @IBOutlet weak var myBookPlaceholderView: UIView!
@@ -53,7 +52,7 @@ class BookSwapViewController: UIViewController {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(restartAnimation))
         swapContainerView.isUserInteractionEnabled = true
         swapContainerView.addGestureRecognizer(recognizer)
-        
+ 
         setupInitialAnimationState()
         startAnimation()
     }
@@ -61,7 +60,9 @@ class BookSwapViewController: UIViewController {
     @objc func restartAnimation() {
         setupInitialAnimationState()
         startAnimation()
+        
         dividerView.startAnimation()
+        myBookQuoteView.open()
     }
     
     func setBooks(book1: Book, book2: Book) {
@@ -123,8 +124,6 @@ class BookSwapViewController: UIViewController {
                 }
 
         }) { _ in
-
-            self.myBookQuoteView.open()
         }
         /*
 

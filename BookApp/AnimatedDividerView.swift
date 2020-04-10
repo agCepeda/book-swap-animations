@@ -34,6 +34,7 @@ class AnimatedDividerView: UIView {
         layer.shadowColor = UIColor.lightGray.cgColor
         layer.shadowRadius = 0.5
         layer.shadowOffset = .init(width: 0.0, height: 3.0)
+        layer.zPosition = -100
         
         return layer
     } ()
@@ -69,6 +70,7 @@ class AnimatedDividerView: UIView {
         
         path.closeSubpath()
         cover.path = path
+        
         
         
         let fromPath = CGMutablePath()

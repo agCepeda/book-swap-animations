@@ -27,6 +27,11 @@ class QuouteView: UIView {
         case ltr
     }
     
+    private var indicatorAnimationGroup: CAAnimationGroup!
+    private var backgroundAnimationGroup: CAAnimationGroup!
+    private var indicatorTransformAnimation: CABasicAnimation!
+    private var indicatorOpacityAnimation: CABasicAnimation!
+    
     private var state: State = .opened {
         didSet {
             self.updateForState()
@@ -220,62 +225,65 @@ class QuouteView: UIView {
     @objc func startIndicator() {
 
         print("SCHEDULED")
-        self.indicator.opacity = 1.0
-        let animation3 = CABasicAnimation(keyPath: "opacity")
-        animation3.fromValue = 0.0
-        animation3.toValue = 1.0
-        animation3.duration = 0.5
-
-        self.indicator.add(animation3, forKey: "opacity")
     }
     
     func addAnimations() {
-        let backBoundsAnimation = CABasicAnimation(keyPath: #keyPath(CALayer.bounds))
-        backBoundsAnimation.fromValue = CGRect(
-            origin: frame.origin,
-            size: .init(
-                width: indicator.frame.size.width,
-                height: frame.size.height
-            )
-        )
-        backBoundsAnimation.toValue = frame
-        backBoundsAnimation.duration = 0.45
-        backBoundsAnimation.timingFunction = .init(name: .easeOut)
+        let currentTime = CACurrentMediaTime()
         
-        background.add(backBoundsAnimation, forKey: nil)
-        startIndicator()
-//            let animation2 = CABasicAnimation(keyPath: "position.x")
-//            animation2.fromValue = 10.0
-//            animation2.toValue = frame.width - 25.0
-//            animation2.duration = 0.45
-//            animation2.timingFunction = .init(name: .easeOut)
-//
-//
-//            let animation3 = CABasicAnimation(keyPath: "opacity")
-//            animation3.fromValue = 0.0
-//            animation3.toValue = 1.0
-//            animation3.duration = 0.75
-//
-//            background.add(animation1, forKey: nil)
-//            indicator.add(animation2, forKey: "position.x")
-//            messageLabel.layer.add(animation3, forKey: "opacity")
+        indicator.opacity = 0.0
+        messageLabel.layer.opacity = 0.0
+        
+        indicatorOpacityAnimation = CABasicAnimation(keyPath: "opacity")
+        indicatorOpacityAnimation.fromValue = 0.0
+        indicatorOpacityAnimation.toValue = 1.0
+        indicatorOpacityAnimation.duration = 0.3
+        indicatorOpacityAnimation.delegate = self
+        
+        indicatorTransformAnimation = CABasicAnimation(keyPath: "transform")
+        indicatorTransformAnimation.fromValue = CATransform3DScale(CATransform3DIdentity, 0.25, 0.25, 0.0)
+        indicatorTransformAnimation.toValue = CATransform3DIdentity
+        indicatorTransformAnimation.duration = 0.3
+        
+        indicatorAnimationGroup = CAAnimationGroup()
+        indicatorAnimationGroup.animations = [indicatorTransformAnimation, indicatorOpacityAnimation]
+        indicatorAnimationGroup.duration = 0.3
+        indicatorAnimationGroup.beginTime = currentTime + 0.8
+        
+        let textOpacity = CABasicAnimation(keyPath: "opacity")
+        textOpacity.fromValue = 0.0
+        textOpacity.toValue = 1.0
+        textOpacity.duration = 0.3
+        textOpacity.beginTime = currentTime + 0.8
 
-//        UIView.animateKeyframes(
-//            withDuration: 2.0,
-//            delay: 0.5,
-//            options: .calculationModeLinear,
-//            animations: {
-//                switch self.state {
-//                case .opened:
-//                    UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1.0) {
-//                        self.openState(rect: self.frame)
-//                    }
-//                case .closed:
-//                    UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1.0) {
-//                        self.closeState(rect: self.frame)
-//                    }
-//                }
-//        }) /* { _ in } */
+        let backPositionX = CABasicAnimation(keyPath: "position.x")
+        backPositionX.toValue = 0
+        backPositionX.fromValue = 50.0 - frame.width
+        backPositionX.duration = 0.7
+        backPositionX.timingFunction = .init(name: .easeIn)
+        
+        let backOpacity = CABasicAnimation(keyPath: "opacity")
+        backOpacity.fromValue = 0.0
+        backOpacity.toValue = 1.0
+        backOpacity.duration = 1.0
+        
+        backgroundAnimationGroup = CAAnimationGroup()
+        backgroundAnimationGroup.animations = [backOpacity, backPositionX]
+        backgroundAnimationGroup.duration = 1.0
+        backgroundAnimationGroup.delegate = self
+        
+        indicator.add(indicatorAnimationGroup, forKey: nil)
+        messageLabel.layer.add(textOpacity, forKey: "opacity")
+        background.add(backgroundAnimationGroup, forKey: nil)
     }
         
+}
+extension QuouteView: CAAnimationDelegate {
+    
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        guard flag else { return }
+        indicator.opacity = 1.0
+        messageLabel.layer.opacity = 1.0
+        
+    }
+    
 }
