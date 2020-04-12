@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9F4C0A3A243F228800898FEA /* AnimatedDividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C0A39243F228800898FEA /* AnimatedDividerView.swift */; };
+		9F4C0A3D2440A84000898FEA /* CALayer+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C0A3C2440A84000898FEA /* CALayer+extensions.swift */; };
+		9F4C0A4324429E1600898FEA /* SwapButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C0A4224429E1600898FEA /* SwapButtonView.swift */; };
 		9F64CD4A243CAFFF006E395F /* UIView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F64CD49243CAFFF006E395F /* UIView+extensions.swift */; };
 		9F7E32582439D37900EC4798 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7E32572439D37900EC4798 /* Book.swift */; };
 		9F7E325A243A34B500EC4798 /* UIColor+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7E3259243A34B500EC4798 /* UIColor+extensions.swift */; };
@@ -29,6 +31,8 @@
 
 /* Begin PBXFileReference section */
 		9F4C0A39243F228800898FEA /* AnimatedDividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedDividerView.swift; sourceTree = "<group>"; };
+		9F4C0A3C2440A84000898FEA /* CALayer+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+extensions.swift"; sourceTree = "<group>"; };
+		9F4C0A4224429E1600898FEA /* SwapButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapButtonView.swift; sourceTree = "<group>"; };
 		9F64CD49243CAFFF006E395F /* UIView+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extensions.swift"; sourceTree = "<group>"; };
 		9F7E32572439D37900EC4798 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		9F7E3259243A34B500EC4798 /* UIColor+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extensions.swift"; sourceTree = "<group>"; };
@@ -61,6 +65,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F4C0A3B2440A81000898FEA /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9F7E3259243A34B500EC4798 /* UIColor+extensions.swift */,
+				9F64CD49243CAFFF006E395F /* UIView+extensions.swift */,
+				9F4C0A3C2440A84000898FEA /* CALayer+extensions.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		9F4C0A3E2441FDBB00898FEA /* views */ = {
+			isa = PBXGroup;
+			children = (
+				9F9EA4BF243AAD430031742E /* QuoteView.swift */,
+				9F4C0A39243F228800898FEA /* AnimatedDividerView.swift */,
+				9F4C0A4224429E1600898FEA /* SwapButtonView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		9F4C0A3F2441FDDC00898FEA /* viewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9F4C0A412441FE3100898FEA /* bookList */,
+				9F8F1B3B24358E6900890B55 /* ViewController.swift */,
+				9F8F1B592435BCEC00890B55 /* BookSwapViewController.swift */,
+			);
+			path = viewControllers;
+			sourceTree = "<group>";
+		};
+		9F4C0A402441FDFB00898FEA /* bookItemCell */ = {
+			isa = PBXGroup;
+			children = (
+				9F8F1B4D2435905400890B55 /* BookItemTableViewCell.swift */,
+				9F8F1B4E2435905400890B55 /* BookItemTableViewCell.xib */,
+			);
+			path = bookItemCell;
+			sourceTree = "<group>";
+		};
+		9F4C0A412441FE3100898FEA /* bookList */ = {
+			isa = PBXGroup;
+			children = (
+				9F4C0A402441FDFB00898FEA /* bookItemCell */,
+				9F8F1B4B24358EEC00890B55 /* BookListViewController.swift */,
+			);
+			path = bookList;
+			sourceTree = "<group>";
+		};
 		9F8F1B2B24358E6900890B55 = {
 			isa = PBXGroup;
 			children = (
@@ -80,23 +132,17 @@
 		9F8F1B3624358E6900890B55 /* BookApp */ = {
 			isa = PBXGroup;
 			children = (
+				9F4C0A3B2440A81000898FEA /* extensions */,
+				9F4C0A3E2441FDBB00898FEA /* views */,
+				9F4C0A3F2441FDDC00898FEA /* viewControllers */,
 				9F8F1B3724358E6900890B55 /* AppDelegate.swift */,
 				9F8F1B3924358E6900890B55 /* SceneDelegate.swift */,
-				9F8F1B3B24358E6900890B55 /* ViewController.swift */,
 				9F8F1B3D24358E6900890B55 /* Main.storyboard */,
 				9F8F1B4024358E6A00890B55 /* Assets.xcassets */,
 				9F8F1B4224358E6A00890B55 /* LaunchScreen.storyboard */,
 				9F8F1B4524358E6A00890B55 /* Info.plist */,
-				9F8F1B4B24358EEC00890B55 /* BookListViewController.swift */,
-				9F8F1B4D2435905400890B55 /* BookItemTableViewCell.swift */,
-				9F8F1B4E2435905400890B55 /* BookItemTableViewCell.xib */,
-				9F8F1B592435BCEC00890B55 /* BookSwapViewController.swift */,
 				9F8F1B5D24368D4700890B55 /* transition */,
 				9F7E32572439D37900EC4798 /* Book.swift */,
-				9F7E3259243A34B500EC4798 /* UIColor+extensions.swift */,
-				9F9EA4BF243AAD430031742E /* QuoteView.swift */,
-				9F4C0A39243F228800898FEA /* AnimatedDividerView.swift */,
-				9F64CD49243CAFFF006E395F /* UIView+extensions.swift */,
 			);
 			path = BookApp;
 			sourceTree = "<group>";
@@ -184,6 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F4C0A3A243F228800898FEA /* AnimatedDividerView.swift in Sources */,
+				9F4C0A4324429E1600898FEA /* SwapButtonView.swift in Sources */,
 				9F8F1B61243693F300890B55 /* PushAnimator.swift in Sources */,
 				9F8F1B5F24368D5D00890B55 /* PopAnimator.swift in Sources */,
 				9F8F1B4F2435905400890B55 /* BookItemTableViewCell.swift in Sources */,
@@ -196,6 +243,7 @@
 				9F8F1B3824358E6900890B55 /* AppDelegate.swift in Sources */,
 				9F8F1B5B2435BCEC00890B55 /* BookSwapViewController.swift in Sources */,
 				9F7E32582439D37900EC4798 /* Book.swift in Sources */,
+				9F4C0A3D2440A84000898FEA /* CALayer+extensions.swift in Sources */,
 				9F8F1B3A24358E6900890B55 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

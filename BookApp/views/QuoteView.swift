@@ -19,7 +19,7 @@ class QuouteView: UIView {
     
     enum State {
         case closed
-        case opened
+        case open
     }
     
     enum Direction: String {
@@ -32,15 +32,23 @@ class QuouteView: UIView {
     private var indicatorTransformAnimation: CABasicAnimation!
     private var indicatorOpacityAnimation: CABasicAnimation!
     
-    private var state: State = .opened {
+    var state: State = .open
+    
+    var direction: Direction = .ltr
+    
+    @IBInspectable var text: String = "" {
         didSet {
-            self.updateForState()
+            messageLabel.text = text
         }
     }
     
-    var direction: Direction = .ltr {
+    @IBInspectable var rtlEnabled: Bool = false {
         didSet {
-            self.updateForState()
+            if self.rtlEnabled {
+                self.direction = .rtl
+            } else {
+                self.direction = .ltr
+            }
         }
     }
     
@@ -92,14 +100,6 @@ class QuouteView: UIView {
         return layer
     }()
     
-    lazy var initialAnimation: CABasicAnimation = {
-        let animation = CABasicAnimation(keyPath: "bounds")
-        animation.fromValue = NSNumber(value: 20.0)
-        animation.toValue = NSNumber(value: 200.0)
-        animation.duration = 100
-        return animation
-    }()
-    
     lazy var messageLabel: UILabel = {
        let label = UILabel()
         
@@ -107,8 +107,6 @@ class QuouteView: UIView {
         label.textColor = UIColor.darkGray
         return label
     }()
-    
-    var didAddInitialAnimation = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -128,162 +126,142 @@ class QuouteView: UIView {
         
         self.addSubview(messageLabel)
         
+        messageLabel.numberOfLines = 0
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             self.topAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -15.0),
             self.bottomAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 15.0),
             self.leadingAnchor.constraint(equalTo: messageLabel.leadingAnchor, constant: -15.0),
             self.trailingAnchor.constraint(equalTo: messageLabel.trailingAnchor, constant: 10.0),
         ])
-        messageLabel.text = "One day in his father's closet, Oskar finds a key in a small envelope inside a vase that he..."
-        messageLabel.numberOfLines = 0
-        
-        updateForState()
     }
     
-    func open() {
-        self.state = .opened
+    func setupInitialAnimationState() {
+        self.state = .closed
+        self.satupXForState(state: .closed, rect: .init(origin: .zero, size: self.frame.size))
+    }
+    
+    func clearAnimations() {
+        background.removeAllAnimations()
+        indicator.removeAllAnimations()
         
-        indicator.opacity = 0.0
-        addAnimations()
-
-//        let timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startIndicator), userInfo: nil, repeats: false)
-//                timer.fire()
-        //
+        self.state = .closed
+        self.satupXForState(state: .closed, rect: .init(origin: .zero, size: self.frame.size))
+    }
+    
+    func startAnimation(beginTime: CFTimeInterval) {
+        self.state = .open
+        addOpenAnimation(beginTime: beginTime)
     }
     
     override func draw(_ rect: CGRect) {
-        switch self.state {
-        case .opened:
-            self.openState(rect: rect)
-        case .closed:
-            self.closeState(rect: rect)
-        }
+        satupXForState(state: state, rect: rect)
     }
     
-    private func updateForState() {
-        switch self.state {
-        case .opened:
-            openState(rect: frame)
+    private func satupXForState(state: State, rect: CGRect) {
+        switch state {
+        case .open:
+            openState(rect: rect)
         case .closed:
-            closeState(rect: frame)
+            closeState(rect: rect)
         }
     }
     
     func closeState(rect: CGRect) {
-        indicator.frame = CGRect(
-            origin: .init(
-                x: rect.width - Constants.indicatorSize.width - Constants.indicatorMarginRight,
-                y: Constants.indicatorMarginTop
-            ),
-            size: Constants.indicatorSize
-        )
-        background.frame = CGRect(
-            origin: .zero,
-            size: .init(
-                width: Constants.indicatorSize.width + Constants.indicatorMarginRight,
-                height: rect.size.height
-            )
-        )
-        messageLabel.layer.opacity = 0.0
+        background.removeAllAnimations()
+        indicator.removeAllAnimations()
+        indicator.position = .init(
+            x: rect.width - Constants.indicatorSize.width - Constants.indicatorMarginRight,
+            y: Constants.indicatorMarginTop)
+        indicator.transform = CATransform3DScale(CATransform3DIdentity, 0.25, 0.25, 1.0)
         indicator.opacity = 0.0
-//        indicator.setAffineTransform(CGAffineTransform.identity.scaledBy(x: 0.3, y: 0.3))
+        
+        background.frame = rect
+        background.opacity = 0.0
+        switch direction {
+        case .ltr:
+            background.position.x = -rect.width * 0.75
+        case .rtl:
+            background.position.x = rect.width * 0.75
+        }
+        
+        messageLabel.layer.opacity = 0.0
+        messageLabel.layer.removeAllAnimations()
     }
     
     func openState(rect: CGRect) {
-        self.background.bounds = rect
-        self.indicator.frame = CGRect(
-            origin: .init(
-                x: rect.width - Constants.indicatorSize.width - Constants.indicatorMarginRight,
-                y: Constants.indicatorMarginTop
-            ),
-            size: Constants.indicatorSize
-        )
-        self.messageLabel.layer.opacity = 1.0
+        background.removeAllAnimations()
+        indicator.removeAllAnimations()
+        background.frame = rect
+        background.opacity = 1.0
+        indicator.position.x = rect.width - Constants.indicatorSize.width - Constants.indicatorMarginRight
+        indicator.position.y = Constants.indicatorMarginTop
+        indicator.transform = CATransform3DIdentity
+        messageLabel.layer.opacity = 1.0
         indicator.opacity = 1.0
-        indicator.contentsScale = 1.0
     }
     
-    func indicatorAnimation() {
-        
-        let animation3 = CABasicAnimation(keyPath: "opacity")
-        animation3.fromValue = 0.0
-        animation3.toValue = 1.0
-        animation3.duration = 0.2
-        
-        let animation4 = CABasicAnimation(keyPath: "contentScale")
-        animation4.fromValue = 0.3
-        animation4.toValue = 1.0
-        animation4.duration = 0.2
-        
-        
-        indicator.add(animation3, forKey: "opacity")
-        indicator.add(animation4, forKey: "contentScale")
-        messageLabel.layer.add(animation3, forKey: "opacity")
-    }
-    
-    @objc func startIndicator() {
-
-        print("SCHEDULED")
-    }
-    
-    func addAnimations() {
-        let currentTime = CACurrentMediaTime()
-        
-        indicator.opacity = 0.0
-        messageLabel.layer.opacity = 0.0
-        
+    func addOpenAnimation(beginTime: CFTimeInterval) {
         indicatorOpacityAnimation = CABasicAnimation(keyPath: "opacity")
         indicatorOpacityAnimation.fromValue = 0.0
         indicatorOpacityAnimation.toValue = 1.0
         indicatorOpacityAnimation.duration = 0.3
-        indicatorOpacityAnimation.delegate = self
+        indicatorOpacityAnimation.isRemovedOnCompletion = false
+        indicatorOpacityAnimation.fillMode = .forwards
         
         indicatorTransformAnimation = CABasicAnimation(keyPath: "transform")
         indicatorTransformAnimation.fromValue = CATransform3DScale(CATransform3DIdentity, 0.25, 0.25, 0.0)
         indicatorTransformAnimation.toValue = CATransform3DIdentity
         indicatorTransformAnimation.duration = 0.3
+        indicatorTransformAnimation.isRemovedOnCompletion = false
+        indicatorTransformAnimation.fillMode = .forwards
         
         indicatorAnimationGroup = CAAnimationGroup()
         indicatorAnimationGroup.animations = [indicatorTransformAnimation, indicatorOpacityAnimation]
         indicatorAnimationGroup.duration = 0.3
-        indicatorAnimationGroup.beginTime = currentTime + 0.8
+        indicatorAnimationGroup.beginTime = beginTime + 0.5
+        indicatorAnimationGroup.isRemovedOnCompletion = false
+        indicatorAnimationGroup.fillMode = .forwards
         
         let textOpacity = CABasicAnimation(keyPath: "opacity")
         textOpacity.fromValue = 0.0
         textOpacity.toValue = 1.0
         textOpacity.duration = 0.3
-        textOpacity.beginTime = currentTime + 0.8
+        textOpacity.beginTime = beginTime + 0.8
+        textOpacity.isRemovedOnCompletion = false
+        textOpacity.fillMode = .forwards
 
         let backPositionX = CABasicAnimation(keyPath: "position.x")
+        switch direction {
+        case .ltr:
+            backPositionX.fromValue = -frame.width * 0.75
+        case .rtl:
+            backPositionX.fromValue = frame.width * 0.75
+        }
         backPositionX.toValue = 0
-        backPositionX.fromValue = 50.0 - frame.width
         backPositionX.duration = 0.7
         backPositionX.timingFunction = .init(name: .easeIn)
+        backPositionX.isRemovedOnCompletion = false
+        backPositionX.fillMode = .forwards
         
         let backOpacity = CABasicAnimation(keyPath: "opacity")
         backOpacity.fromValue = 0.0
         backOpacity.toValue = 1.0
         backOpacity.duration = 1.0
+        backOpacity.isRemovedOnCompletion = false
+        backOpacity.fillMode = .forwards
         
         backgroundAnimationGroup = CAAnimationGroup()
         backgroundAnimationGroup.animations = [backOpacity, backPositionX]
+        backgroundAnimationGroup.beginTime = beginTime
         backgroundAnimationGroup.duration = 1.0
-        backgroundAnimationGroup.delegate = self
+        backgroundAnimationGroup.isRemovedOnCompletion = false
+        backgroundAnimationGroup.fillMode = .forwards
         
+        
+        messageLabel.layer.add(textOpacity, forKey: nil)
         indicator.add(indicatorAnimationGroup, forKey: nil)
-        messageLabel.layer.add(textOpacity, forKey: "opacity")
         background.add(backgroundAnimationGroup, forKey: nil)
     }
-        
-}
-extension QuouteView: CAAnimationDelegate {
-    
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        guard flag else { return }
-        indicator.opacity = 1.0
-        messageLabel.layer.opacity = 1.0
-        
-    }
-    
 }

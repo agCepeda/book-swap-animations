@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class AnimatedDividerView: UIView {
     
     lazy var cover: CAShapeLayer = {
@@ -18,8 +19,8 @@ class AnimatedDividerView: UIView {
         
         fromPath.move(to: .zero)
         fromPath.addLine(to: .init(x: frame.width, y: 0.0))
-        fromPath.addLine(to: .init(x: frame.width, y: 40.0))
-        fromPath.addLine(to: .init(x: 0.0, y: 40.0
+        fromPath.addLine(to: .init(x: frame.width, y: 60.0))
+        fromPath.addLine(to: .init(x: 0.0, y: 50.0
             ))
         fromPath.addLine(to: .zero)
         fromPath.closeSubpath()
@@ -27,9 +28,7 @@ class AnimatedDividerView: UIView {
 
 //        layer.strokeColor = UIColor.gray.cgColor
 //        layer.lineWidth = 0.5
-        layer.fillColor = UIColor.init(hexString: "#FEF47B").cgColor
         layer.fillRule = CAShapeLayerFillRule.nonZero
-//
         layer.shadowOpacity = 0.5
         layer.shadowColor = UIColor.lightGray.cgColor
         layer.shadowRadius = 0.5
@@ -50,16 +49,21 @@ class AnimatedDividerView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        self.updatePosition(rect)
+//        self.updatePosition(rect)
+        
+    }
+    
+    @IBInspectable var secondColor: UIColor = UIColor.yellow {
+        didSet {
+            self.cover.fillColor = self.secondColor.cgColor
+        }
     }
     
     func setupView() {
         self.layer.addSublayer(cover)
-        self.backgroundColor = UIColor.init(hexString: "#FB8AD4"
-        )
     }
     
-    func startAnimation() {
+    func startAnimation(beginTime: CFTimeInterval) {
         let path = CGMutablePath()
         
         path.move(to: .zero)
@@ -69,16 +73,13 @@ class AnimatedDividerView: UIView {
         path.addLine(to: .zero)
         
         path.closeSubpath()
-        cover.path = path
-        
-        
         
         let fromPath = CGMutablePath()
         
         fromPath.move(to: .zero)
         fromPath.addLine(to: .init(x: frame.width, y: 0.0))
-        fromPath.addLine(to: .init(x: frame.width, y: 40.0))
-        fromPath.addLine(to: .init(x: 0.0, y: 40.0))
+        fromPath.addLine(to: .init(x: frame.width, y: 60.0))
+        fromPath.addLine(to: .init(x: 0.0, y: 50.0))
         fromPath.addLine(to: .zero)
         fromPath.closeSubpath()
         
@@ -87,28 +88,25 @@ class AnimatedDividerView: UIView {
         animation.toValue = path
         animation.duration = 1.0
         animation.timingFunction = .init(name: .easeOut)
+        animation.isRemovedOnCompletion = false
+        animation.fillMode = .forwards
+        animation.beginTime = beginTime
         
         cover.add(animation, forKey: "path")
         
     }
-    
-    private func updatePosition(_ rect: CGRect) {
-//        let transform = CGAffineTransform.identity
-//            .translatedBy(x: rect.width / 2, y: rect.height/2)
-//            .rotated(by: atan(rect.height / rect.width))
+    func setupInitialAnimationState() {
+        cover.removeAllAnimations()
         
-//        cover.bounds = CGRect(
-//            origin: .zero,
-//            size: .init(
-//                width: sqrt(pow(rect.width, 2.0) + pow(rect.height, 2.0)),
-//                height: rect.height
-//            )
-//        )
-//        cover.anchorPoint = CGPoint(x: 0.0, y: cover.anchorPoint.y)
-//        cover.setAffineTransform(transform)
+        let fromPath = CGMutablePath()
         
-//        let transform = CGAffineTransform.identity
-//            .scaledBy(x: rect.width / 10.0, y: rect.height / 10.0)
-//        cover.setAffineTransform(transform)
+        fromPath.move(to: .zero)
+        fromPath.addLine(to: .init(x: frame.width, y: 0.0))
+        fromPath.addLine(to: .init(x: frame.width, y: 60.0))
+        fromPath.addLine(to: .init(x: 0.0, y: 50.0))
+        fromPath.addLine(to: .zero)
+        fromPath.closeSubpath()
+        
+        cover.path = fromPath
     }
 }
