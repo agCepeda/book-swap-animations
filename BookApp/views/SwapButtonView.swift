@@ -89,7 +89,6 @@ import UIKit
                 size: .init(width: rect.height, height: rect.height)
             )
             background.opacity = 0.0
-            background.transform = CATransform3DScale(CATransform3DIdentity, 0.25, 0.25, 1.0)
             titleLabel.opacity = 0.0
             
             icon.opacity = 0.0
@@ -168,17 +167,41 @@ import UIKit
         transform.fillMode = .forwards
         transform.isRemovedOnCompletion = false
         
-        let bounds = CABasicAnimation(keyPath: "bounds.size.width")
-        bounds.fromValue = 45.0
-        bounds.toValue = 190
-        bounds.duration = 0.3
-        bounds.beginTime = 0.3
+//        let bounds = CABasicAnimation(keyPath: "bounds.size.width")
+//        bounds.fromValue = 45.0
+//        bounds.toValue = 190
+//        bounds.duration = 0.3
+//        bounds.beginTime = 0.3
+//        bounds.fillMode = .forwards
+//        bounds.isRemovedOnCompletion = false
+        
+        let cornerRadius = CAKeyframeAnimation(keyPath: "cornerRadius")
+        cornerRadius.values =  [
+            CGFloat(5.0),
+            CGFloat(22.5),
+            CGFloat(22.5)
+        ]
+//        bounds.toValue = 190
+        cornerRadius.duration = 0.7
+        cornerRadius.beginTime = 0.0
+        cornerRadius.fillMode = .forwards
+        cornerRadius.isRemovedOnCompletion = false
+        
+        let bounds = CAKeyframeAnimation(keyPath: "bounds.size")
+        bounds.values =  [
+            CGSize(width: 10.0, height: 10.0),
+            CGSize(width: 45.0, height: 45.0),
+            CGSize(width: 190.0, height: 45.0)
+        ]
+//        bounds.toValue = 190
+        bounds.duration = 0.7
+        bounds.beginTime = 0.0
         bounds.fillMode = .forwards
         bounds.isRemovedOnCompletion = false
         
         
         let animationGroup = CAAnimationGroup()
-        animationGroup.animations = [opacity, transform, bounds]
+        animationGroup.animations = [opacity,cornerRadius, bounds]
         animationGroup.duration = 1.0
         animationGroup.isRemovedOnCompletion = false
         animationGroup.fillMode = .forwards

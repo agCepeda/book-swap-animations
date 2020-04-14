@@ -57,6 +57,18 @@ class BookListViewController: UIViewController {
     @IBOutlet weak var myBookNameLabel: UILabel!
     @IBOutlet weak var myBookAuthorLabel: UILabel!
     
+    var bookContainerView: UIView {
+        return self.selectedCell.contentView
+    }
+    
+    var bookNameLabel: UILabel {
+        return self.selectedCell.nameLabel
+    }
+    
+    var bookAuthorLabel: UILabel {
+        return self.selectedCell.authorLabel
+    }
+    
     @IBOutlet weak var myBookImageView: UIImageView!
     
     var myBook: Book? {
@@ -82,6 +94,8 @@ class BookListViewController: UIViewController {
             author: "Murakami",
             color: UIColor(red:0.98, green:0.60, blue:0.60, alpha:1.00)
         )
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -113,9 +127,9 @@ extension BookListViewController: UITableViewDelegate {
             else { return }
         self.bookImageView = cell.bookImageView
         self.selectedCell = cell
-//        if let navController = self.navigationController {
-//            navController.delegate = self
-//        }
+        if let navController = self.navigationController {
+            navController.delegate = self
+        }
     
         self.performSegue(withIdentifier: Constants.swapControllerSegue, sender: cell.book)
     }

@@ -63,6 +63,8 @@ class BookSwapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         myBookImageView.image = UIImage(named: book1.image)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(restartAnimation))
         swapContainerView.isUserInteractionEnabled = true
@@ -70,6 +72,7 @@ class BookSwapViewController: UIViewController {
         
         myBookPlaceholderView.layer.addSublayer(myBookPlaceholderLayer)
         bookPlaceholderView.layer.addSublayer(bookPlaceholderLayer)
+        setupInitialAnimationState()
     }
     
     override func viewDidLayoutSubviews() {
@@ -188,7 +191,7 @@ class BookSwapViewController: UIViewController {
         
         myBookQuoteView.startAnimation(beginTime: currentTime + 1.0)
         bookQuoteView.startAnimation(beginTime: currentTime + 1.0)
-        dividerView.startAnimation(beginTime: currentTime + 1.5)
+        dividerView.startAnimation(beginTime: currentTime)
         swapContainerView.startAnimation(beginTime: currentTime + 1.5)
     }
 }

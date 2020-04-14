@@ -19,9 +19,8 @@ class AnimatedDividerView: UIView {
         
         fromPath.move(to: .zero)
         fromPath.addLine(to: .init(x: frame.width, y: 0.0))
-        fromPath.addLine(to: .init(x: frame.width, y: 60.0))
-        fromPath.addLine(to: .init(x: 0.0, y: 50.0
-            ))
+        fromPath.addLine(to: .init(x: frame.width, y: 1.0))
+        fromPath.addLine(to: .init(x: 0.0, y: 1.0))
         fromPath.addLine(to: .zero)
         fromPath.closeSubpath()
         layer.path = fromPath
@@ -30,9 +29,9 @@ class AnimatedDividerView: UIView {
 //        layer.lineWidth = 0.5
         layer.fillRule = CAShapeLayerFillRule.nonZero
         layer.shadowOpacity = 0.5
-        layer.shadowColor = UIColor.lightGray.cgColor
-        layer.shadowRadius = 0.5
-        layer.shadowOffset = .init(width: 0.0, height: 3.0)
+        layer.shadowColor = UIColor.darkGray.cgColor
+        layer.shadowRadius = 5.0
+        layer.shadowOffset = .init(width: 0.0, height: 2.0)
         layer.zPosition = -100
         
         return layer
@@ -68,7 +67,7 @@ class AnimatedDividerView: UIView {
         
         path.move(to: .zero)
         path.addLine(to: .init(x: frame.width, y: 0.0))
-        path.addLine(to: .init(x: frame.width, y: 10.0))
+        path.addLine(to: .init(x: frame.width, y: 1.0))
         path.addLine(to: .init(x: 0.0, y: frame.height))
         path.addLine(to: .zero)
         
@@ -78,8 +77,8 @@ class AnimatedDividerView: UIView {
         
         fromPath.move(to: .zero)
         fromPath.addLine(to: .init(x: frame.width, y: 0.0))
-        fromPath.addLine(to: .init(x: frame.width, y: 60.0))
-        fromPath.addLine(to: .init(x: 0.0, y: 50.0))
+        fromPath.addLine(to: .init(x: frame.width, y: 1.0))
+        fromPath.addLine(to: .init(x: 0.0, y: 1.0))
         fromPath.addLine(to: .zero)
         fromPath.closeSubpath()
         
@@ -102,8 +101,8 @@ class AnimatedDividerView: UIView {
         
         fromPath.move(to: .zero)
         fromPath.addLine(to: .init(x: frame.width, y: 0.0))
-        fromPath.addLine(to: .init(x: frame.width, y: 60.0))
-        fromPath.addLine(to: .init(x: 0.0, y: 50.0))
+        fromPath.addLine(to: .init(x: frame.width, y: 10.0))
+        fromPath.addLine(to: .init(x: 0.0, y: 0.0))
         fromPath.addLine(to: .zero)
         fromPath.closeSubpath()
         
