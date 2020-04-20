@@ -89,7 +89,7 @@ extension BookListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BookItemTableViewCell
         cell.book = bookCollection[indexPath.row]
-        cell.schema = schemas[indexPath.row % schemas.count]
+        cell.schema = colorSchemas[indexPath.row % colorSchemas.count]
         return cell
     }
 }

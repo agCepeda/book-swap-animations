@@ -16,7 +16,7 @@ struct ColorSchema {
     var card: UIColor = UIColor.white
 }
 
-let schemas: [ColorSchema] = [
+let colorSchemas: [ColorSchema] = [
     ColorSchema(
         background: UIColor(red: 0.439, green: 0.941, blue: 0.776, alpha: 1.0),
         text: UIColor(red: 0.044, green: 0.144, blue: 0.192, alpha: 1.0),

@@ -20,7 +20,6 @@ open class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         else {
             return
         }
-        print("ANIMATION", toViewController, fromViewController)
         transitionContext.containerView.addSubview(toViewController.view)
         transitionContext.containerView.addSubview(fromViewController.view)
         
