@@ -42,6 +42,13 @@ class QuouteView: UIView {
         }
     }
     
+    @IBInspectable var indicatorColor: UIColor = .clear {
+        didSet {
+            self.indicator.fillColor = self.indicatorColor.cgColor
+            self.indicator.fillRule = CAShapeLayerFillRule.nonZero
+        }
+    }
+    
     @IBInspectable var rtlEnabled: Bool = false {
         didSet {
             if self.rtlEnabled {

@@ -8,39 +8,6 @@
 
 import UIKit
 
-let bookCollection: [Book] = [
-    Book(
-        name: "Thinner",
-        image: "book1",
-        author: "Stephen King",
-        color: UIColor(red:0.27, green:0.96, blue:0.80, alpha:1.00)
-    ),
-    Book(
-        name: "The Outside Boy",
-        image: "book2",
-        author: "Jeanine Cummins",
-        color: UIColor(red:0.75, green:0.49, blue:1.00, alpha:1.00)
-    ),
-    Book(
-        name: "Orange Clockwork",
-        image: "book4",
-        author: "Anthony Burgess",
-        color: UIColor(red:0.78, green:0.93, blue:0.58, alpha:1.00)
-    ),
-    Book(
-        name: "The Last Wild",
-        image: "book5",
-        author: "Piers Torday",
-        color: UIColor(red:0.39, green:0.47, blue:0.83, alpha:1.00)
-    ),
-    Book(
-        name: "Harry Potter and the Chamber Of Secrets",
-        image: "book6",
-        author: "J.K. Rowling",
-        color: UIColor(red:0.98, green:0.54, blue:0.83, alpha:1.00)
-    )
-]
-
 class BookListViewController: UIViewController {
     
     struct Constants {
@@ -58,7 +25,11 @@ class BookListViewController: UIViewController {
     @IBOutlet weak var myBookAuthorLabel: UILabel!
     
     var bookContainerView: UIView {
-        return self.selectedCell.contentView
+        return self.selectedCell.animableView
+    }
+    
+    var bookColorSchema: ColorSchema {
+        return self.selectedCell.schema ?? ColorSchema()
     }
     
     var bookNameLabel: UILabel {
@@ -92,6 +63,7 @@ class BookListViewController: UIViewController {
             name: "1Q84",
             image: "book3",
             author: "Murakami",
+            abstract: "A young woman named Aomame follows a taxi driver’s enigmatic suggestion and begins to notice puzzling discrepancies in the world around her",
             color: UIColor(red:0.98, green:0.60, blue:0.60, alpha:1.00)
         )
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
@@ -103,7 +75,7 @@ class BookListViewController: UIViewController {
             let book1 = self.myBook,
             let book2 = sender as? Book,
             let controller = segue.destination as? BookSwapViewController {
-            controller.setBooks(book1: book1, book2: book2)
+            controller.setBooks(myBook: book1, book: book2)
         }
     }
 
@@ -117,6 +89,7 @@ extension BookListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BookItemTableViewCell
         cell.book = bookCollection[indexPath.row]
+        cell.schema = schemas[indexPath.row % schemas.count]
         return cell
     }
 }

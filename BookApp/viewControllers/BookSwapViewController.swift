@@ -9,6 +9,9 @@
 import UIKit
 
 class BookSwapViewController: UIViewController {
+    @IBOutlet weak var topBackgroundView: UIView!
+    @IBOutlet weak var bottomBackgroundView: UIView!
+    
     @IBOutlet weak var myBookNameLabel: UILabel!
     @IBOutlet weak var myBookAuthorLabel: UILabel!
     @IBOutlet weak var myBookQuoteView: QuouteView!
@@ -22,47 +25,42 @@ class BookSwapViewController: UIViewController {
     @IBOutlet weak var bookPlaceholderView: UIView!
     
     @IBOutlet weak var dividerView: AnimatedDividerView!
-    
-    @IBOutlet weak var topBackgroundView: UIView!
-    @IBOutlet weak var bottomBackgroundView: UIView!
-    
     @IBOutlet weak var swapContainerView: SwapButtonView!
     
-    lazy var bookPlaceholderLayer: CALayer = {
+    lazy var bookPlaceholderLayer: CAGradientLayer = {
+        let layer = CAGradientLayer()
+        return layer
+    }()
+    
+    lazy var myBookPlaceholderLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
         layer.colors = [
-            UIColor.init(hexString: "#AF52DE", alpha: 0.75).cgColor,
-            UIColor.init(hexString: "#833DC2", alpha: 0.75).cgColor,
+            
+            UIColor(red: 0.737, green: 0.201, blue: 0.161, alpha: 1.0).lighter(by: 30)?.cgColor,
+            UIColor(red: 0.737, green: 0.201, blue: 0.161, alpha: 1.0).lighter(by: 30)?.cgColor,
         ]
         return layer
     }()
     
-    lazy var myBookPlaceholderLayer: CALayer = {
-        let layer = CAGradientLayer()
-        layer.colors = [
-            UIColor.init(hexString: "#AF52DE", alpha: 0.75).cgColor,
-            UIColor.init(hexString: "#833DC2", alpha: 0.75).cgColor,
-        ]
-        return layer
-    }()
-
+    var bookColorSchema: ColorSchema = ColorSchema() {
+        didSet {
+            bookNameLabel.textColor = self.bookColorSchema.text
+            bookAuthorLabel.textColor = self.bookColorSchema.text
+            self.bookPlaceholderLayer.colors = [
+                self.bookColorSchema.card.cgColor,
+                self.bookColorSchema.card.darker(by: 10)?.cgColor,
+            ]
+            self.view.backgroundColor = self.bookColorSchema.background
+        }
+    }
     
-    var book1: Book! = Book(
-        name: "The Outside Boy",
-        image: "book2",
-        author: "Jeanine Cummins",
-        color: UIColor(red:0.75, green:0.49, blue:1.00, alpha:1.00)
-    )
-    var book2: Book! = Book(
-        name: "Thinner",
-        image: "book1",
-        author: "Stephen King",
-        color: UIColor(red:0.27, green:0.96, blue:0.80, alpha:1.00)
-    )
+    var myBookModel: Book = Book()
+    
+    var bookModel: Book = Book()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        myBookImageView.image = UIImage(named: book1.image)
+        myBookImageView.image = UIImage(named: myBookModel.image)
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
@@ -72,6 +70,17 @@ class BookSwapViewController: UIViewController {
         
         myBookPlaceholderView.layer.addSublayer(myBookPlaceholderLayer)
         bookPlaceholderView.layer.addSublayer(bookPlaceholderLayer)
+        
+
+        self.myBookNameLabel.text = self.myBookModel.name
+        self.myBookAuthorLabel.text = self.myBookModel.author
+        self.myBookQuoteView.text = self.myBookModel.abstract
+        self.myBookImageView.image = UIImage(named: self.myBookModel.image)
+        self.bookNameLabel.text = self.bookModel.name
+        self.bookAuthorLabel.text = self.bookModel.author
+        self.bookQuoteView.text = self.bookModel.abstract
+        self.bookImageView.image = UIImage(named: self.bookModel.image)
+        
         setupInitialAnimationState()
     }
     
@@ -88,9 +97,9 @@ class BookSwapViewController: UIViewController {
         }
     }
     
-    func setBooks(book1: Book, book2: Book) {
-        self.book1 = book1
-        self.book2 = book2
+    func setBooks(myBook: Book, book: Book) {
+        self.myBookModel = myBook
+        self.bookModel = book
     }
 
     func setupInitialAnimationState() {

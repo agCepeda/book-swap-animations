@@ -97,4 +97,12 @@ extension UIView {
         let nib = UINib(nibName: nibName, bundle: Bundle.main)
         return nib.instantiate(withOwner: self, options: nil).first as! UIView
     }
+    
+    var positionOnScreen: CGPoint {
+        return self.superview?.convert(self.frame.origin, to: nil) ?? CGPoint.zero
+    }
+    
+    var frameOnScreen: CGRect {
+        return CGRect(origin: self.positionOnScreen, size: frame.size)
+    }
 }

@@ -22,13 +22,19 @@ open class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         }
         print("ANIMATION", toViewController, fromViewController)
         transitionContext.containerView.addSubview(toViewController.view)
-        toViewController.view.alpha = 0
+        transitionContext.containerView.addSubview(fromViewController.view)
+        
+        fromViewController.view.layer.shadowColor = UIColor.darkGray.cgColor
+        fromViewController.view.layer.shadowRadius = 5.0
+        fromViewController.view.layer.shadowOffset = .init(width: -5.0, height: 0.0)
+        fromViewController.view.layer.shadowOpacity = 0.5
 
         let duration = self.transitionDuration(using: transitionContext)
         UIView.animate(withDuration: duration, animations: {
-            toViewController.view.alpha = 1
+            fromViewController.view.transform = fromViewController.view.transform.translatedBy(x: transitionContext.containerView.frame.width, y: 0.0)
+            
         }, completion: { _ in
-            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+            transitionContext.completeTransition(true)
         })
     }
 }

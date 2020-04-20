@@ -27,6 +27,9 @@
 		9F8F1B61243693F300890B55 /* PushAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8F1B60243693F300890B55 /* PushAnimator.swift */; };
 		9F8F1B632436941E00890B55 /* SwapNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8F1B622436941E00890B55 /* SwapNavigationController.swift */; };
 		9F9EA4C0243AAD430031742E /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9EA4BF243AAD430031742E /* QuoteView.swift */; };
+		9FA4670F2446690300D08109 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA4670E2446690300D08109 /* BackgroundView.swift */; };
+		9FA46715244683E200D08109 /* ColorSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA46714244683E200D08109 /* ColorSchema.swift */; };
+		9FA4671724488E9E00D08109 /* CoreGraphics+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA4671624488E9E00D08109 /* CoreGraphics+extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,9 @@
 		9F8F1B60243693F300890B55 /* PushAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAnimator.swift; sourceTree = "<group>"; };
 		9F8F1B622436941E00890B55 /* SwapNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapNavigationController.swift; sourceTree = "<group>"; };
 		9F9EA4BF243AAD430031742E /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
+		9FA4670E2446690300D08109 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		9FA46714244683E200D08109 /* ColorSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchema.swift; sourceTree = "<group>"; };
+		9FA4671624488E9E00D08109 /* CoreGraphics+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreGraphics+extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +77,7 @@
 				9F7E3259243A34B500EC4798 /* UIColor+extensions.swift */,
 				9F64CD49243CAFFF006E395F /* UIView+extensions.swift */,
 				9F4C0A3C2440A84000898FEA /* CALayer+extensions.swift */,
+				9FA4671624488E9E00D08109 /* CoreGraphics+extensions.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -81,6 +88,7 @@
 				9F9EA4BF243AAD430031742E /* QuoteView.swift */,
 				9F4C0A39243F228800898FEA /* AnimatedDividerView.swift */,
 				9F4C0A4224429E1600898FEA /* SwapButtonView.swift */,
+				9FA4670E2446690300D08109 /* BackgroundView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -143,6 +151,7 @@
 				9F8F1B4524358E6A00890B55 /* Info.plist */,
 				9F8F1B5D24368D4700890B55 /* transition */,
 				9F7E32572439D37900EC4798 /* Book.swift */,
+				9FA46714244683E200D08109 /* ColorSchema.swift */,
 			);
 			path = BookApp;
 			sourceTree = "<group>";
@@ -236,13 +245,16 @@
 				9F8F1B4F2435905400890B55 /* BookItemTableViewCell.swift in Sources */,
 				9F7E325A243A34B500EC4798 /* UIColor+extensions.swift in Sources */,
 				9F8F1B3C24358E6900890B55 /* ViewController.swift in Sources */,
+				9FA4670F2446690300D08109 /* BackgroundView.swift in Sources */,
 				9F64CD4A243CAFFF006E395F /* UIView+extensions.swift in Sources */,
 				9F8F1B632436941E00890B55 /* SwapNavigationController.swift in Sources */,
+				9FA46715244683E200D08109 /* ColorSchema.swift in Sources */,
 				9F8F1B4C24358EEC00890B55 /* BookListViewController.swift in Sources */,
 				9F9EA4C0243AAD430031742E /* QuoteView.swift in Sources */,
 				9F8F1B3824358E6900890B55 /* AppDelegate.swift in Sources */,
 				9F8F1B5B2435BCEC00890B55 /* BookSwapViewController.swift in Sources */,
 				9F7E32582439D37900EC4798 /* Book.swift in Sources */,
+				9FA4671724488E9E00D08109 /* CoreGraphics+extensions.swift in Sources */,
 				9F4C0A3D2440A84000898FEA /* CALayer+extensions.swift in Sources */,
 				9F8F1B3A24358E6900890B55 /* SceneDelegate.swift in Sources */,
 			);

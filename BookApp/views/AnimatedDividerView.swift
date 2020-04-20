@@ -17,12 +17,13 @@ class AnimatedDividerView: UIView {
         
         let fromPath = CGMutablePath()
         
-        fromPath.move(to: .zero)
-        fromPath.addLine(to: .init(x: frame.width, y: 0.0))
-        fromPath.addLine(to: .init(x: frame.width, y: 1.0))
-        fromPath.addLine(to: .init(x: 0.0, y: 1.0))
-        fromPath.addLine(to: .zero)
-        fromPath.closeSubpath()
+                fromPath.move(to: .init(x: 0.0, y: -5.0))
+                fromPath.addLine(to: .init(x: frame.width, y: -5.0))
+                fromPath.addLine(to: .init(x: frame.width, y: 0.0))
+                fromPath.addLine(to: .zero)
+        //        fromPath.addLine(to: .init(x: 0.0, y: -5.0))
+                fromPath.closeSubpath()
+        
         layer.path = fromPath
 
 //        layer.strokeColor = UIColor.gray.cgColor
@@ -75,12 +76,12 @@ class AnimatedDividerView: UIView {
         
         let fromPath = CGMutablePath()
         
-        fromPath.move(to: .zero)
-        fromPath.addLine(to: .init(x: frame.width, y: 0.0))
-        fromPath.addLine(to: .init(x: frame.width, y: 1.0))
-        fromPath.addLine(to: .init(x: 0.0, y: 1.0))
-        fromPath.addLine(to: .zero)
-        fromPath.closeSubpath()
+                fromPath.move(to: .init(x: 0.0, y: -5.0))
+                fromPath.addLine(to: .init(x: frame.width, y: -5.0))
+                fromPath.addLine(to: .init(x: frame.width, y: 0.0))
+                fromPath.addLine(to: .zero)
+        //        fromPath.addLine(to: .init(x: 0.0, y: -5.0))
+                fromPath.closeSubpath()
         
         let animation = CABasicAnimation(keyPath: "path")
         animation.fromValue = fromPath
@@ -99,11 +100,11 @@ class AnimatedDividerView: UIView {
         
         let fromPath = CGMutablePath()
         
-        fromPath.move(to: .zero)
+        fromPath.move(to: .init(x: 0.0, y: -5.0))
+        fromPath.addLine(to: .init(x: frame.width, y: -5.0))
         fromPath.addLine(to: .init(x: frame.width, y: 0.0))
-        fromPath.addLine(to: .init(x: frame.width, y: 10.0))
-        fromPath.addLine(to: .init(x: 0.0, y: 0.0))
         fromPath.addLine(to: .zero)
+//        fromPath.addLine(to: .init(x: 0.0, y: -5.0))
         fromPath.closeSubpath()
         
         cover.path = fromPath
