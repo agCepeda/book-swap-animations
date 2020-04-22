@@ -75,6 +75,7 @@ class BookListViewController: UIViewController {
             let book1 = self.myBook,
             let book2 = sender as? Book,
             let controller = segue.destination as? BookSwapViewController {
+            controller.bookColorSchema = selectedCell.schema ?? controller.bookColorSchema
             controller.setBooks(myBook: book1, book: book2)
         }
     }
@@ -115,7 +116,7 @@ extension BookListViewController: UINavigationControllerDelegate {
         case .pop:
             return PopAnimator()
         case .push:
-            return PushAnimator()
+            return PushV2Animator()
         default:
             return nil
         }

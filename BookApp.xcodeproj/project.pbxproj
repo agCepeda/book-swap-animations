@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F2B7D5D244D24B80006B904 /* PushV2Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2B7D5C244D24B80006B904 /* PushV2Animator.swift */; };
+		9F2B7D5F244D29CC0006B904 /* CloseableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2B7D5E244D29CC0006B904 /* CloseableView.swift */; };
 		9F4C0A3A243F228800898FEA /* AnimatedDividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C0A39243F228800898FEA /* AnimatedDividerView.swift */; };
 		9F4C0A3D2440A84000898FEA /* CALayer+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C0A3C2440A84000898FEA /* CALayer+extensions.swift */; };
 		9F4C0A4324429E1600898FEA /* SwapButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C0A4224429E1600898FEA /* SwapButtonView.swift */; };
@@ -33,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F2B7D5C244D24B80006B904 /* PushV2Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushV2Animator.swift; sourceTree = "<group>"; };
+		9F2B7D5E244D29CC0006B904 /* CloseableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseableView.swift; sourceTree = "<group>"; };
 		9F4C0A39243F228800898FEA /* AnimatedDividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedDividerView.swift; sourceTree = "<group>"; };
 		9F4C0A3C2440A84000898FEA /* CALayer+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+extensions.swift"; sourceTree = "<group>"; };
 		9F4C0A4224429E1600898FEA /* SwapButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapButtonView.swift; sourceTree = "<group>"; };
@@ -107,6 +111,7 @@
 				9F4C0A39243F228800898FEA /* AnimatedDividerView.swift */,
 				9F4C0A4224429E1600898FEA /* SwapButtonView.swift */,
 				9FA4670E2446690300D08109 /* BackgroundView.swift */,
+				9F2B7D5E244D29CC0006B904 /* CloseableView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -178,6 +183,7 @@
 			children = (
 				9F8F1B5E24368D5D00890B55 /* PopAnimator.swift */,
 				9F8F1B60243693F300890B55 /* PushAnimator.swift */,
+				9F2B7D5C244D24B80006B904 /* PushV2Animator.swift */,
 			);
 			path = transitions;
 			sourceTree = "<group>";
@@ -259,6 +265,7 @@
 				9F8F1B61243693F300890B55 /* PushAnimator.swift in Sources */,
 				9F8F1B5F24368D5D00890B55 /* PopAnimator.swift in Sources */,
 				9F8F1B4F2435905400890B55 /* BookItemTableViewCell.swift in Sources */,
+				9F2B7D5F244D29CC0006B904 /* CloseableView.swift in Sources */,
 				9F7E325A243A34B500EC4798 /* UIColor+extensions.swift in Sources */,
 				9F8F1B3C24358E6900890B55 /* ViewController.swift in Sources */,
 				9FA4670F2446690300D08109 /* BackgroundView.swift in Sources */,
@@ -268,6 +275,7 @@
 				9F8F1B4C24358EEC00890B55 /* BookListViewController.swift in Sources */,
 				9F9EA4C0243AAD430031742E /* QuoteView.swift in Sources */,
 				9F8F1B3824358E6900890B55 /* AppDelegate.swift in Sources */,
+				9F2B7D5D244D24B80006B904 /* PushV2Animator.swift in Sources */,
 				9F8F1B5B2435BCEC00890B55 /* BookSwapViewController.swift in Sources */,
 				9F7E32582439D37900EC4798 /* Book.swift in Sources */,
 				9FA4671724488E9E00D08109 /* CoreGraphics+extensions.swift in Sources */,

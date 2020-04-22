@@ -42,6 +42,12 @@ class QuouteView: UIView {
         }
     }
     
+    @IBInspectable var font: UIFont? = .systemFont(ofSize: 12.0) {
+        didSet {
+            messageLabel.font = self.font
+        }
+    }
+    
     @IBInspectable var indicatorColor: UIColor = .clear {
         didSet {
             self.indicator.fillColor = self.indicatorColor.cgColor
@@ -110,7 +116,7 @@ class QuouteView: UIView {
     lazy var messageLabel: UILabel = {
        let label = UILabel()
         
-        label.font = UIFont.init(name: "HelveticaNeue-Medium", size: 13.5)
+        label.font = UIFont.init(name: "Arial", size: 15.0)
         label.textColor = UIColor.darkGray
         return label
     }()

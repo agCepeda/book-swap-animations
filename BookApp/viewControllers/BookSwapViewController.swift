@@ -9,8 +9,8 @@
 import UIKit
 
 class BookSwapViewController: UIViewController {
-    @IBOutlet weak var topBackgroundView: UIView!
-    @IBOutlet weak var bottomBackgroundView: UIView!
+//    @IBOutlet weak var topBackgroundView: UIView!
+//    @IBOutlet weak var bottomBackgroundView: UIView!
     
     @IBOutlet weak var myBookNameLabel: UILabel!
     @IBOutlet weak var myBookAuthorLabel: UILabel!
@@ -24,8 +24,8 @@ class BookSwapViewController: UIViewController {
     @IBOutlet weak var bookImageView: UIImageView!
     @IBOutlet weak var bookPlaceholderView: UIView!
     
-    @IBOutlet weak var dividerView: AnimatedDividerView!
     @IBOutlet weak var swapContainerView: SwapButtonView!
+    @IBOutlet weak var transitionView: CloseableView!
     
     lazy var bookPlaceholderLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
@@ -42,17 +42,7 @@ class BookSwapViewController: UIViewController {
         return layer
     }()
     
-    var bookColorSchema: ColorSchema = ColorSchema() {
-        didSet {
-            bookNameLabel.textColor = self.bookColorSchema.text
-            bookAuthorLabel.textColor = self.bookColorSchema.text
-            self.bookPlaceholderLayer.colors = [
-                self.bookColorSchema.card.cgColor,
-                self.bookColorSchema.card.darker(by: 10)?.cgColor,
-            ]
-            self.view.backgroundColor = self.bookColorSchema.background
-        }
-    }
+    var bookColorSchema: ColorSchema = ColorSchema()
     
     var myBookModel: Book = Book()
     
@@ -63,6 +53,17 @@ class BookSwapViewController: UIViewController {
         myBookImageView.image = UIImage(named: myBookModel.image)
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
+
+        bookNameLabel.textColor = self.bookColorSchema.text
+        bookAuthorLabel.textColor = self.bookColorSchema.text
+        
+        self.bookPlaceholderLayer.colors = [
+            self.bookColorSchema.card.cgColor,
+            self.bookColorSchema.card.darker(by: 10)?.cgColor,
+        ]
+        
+        view.backgroundColor = self.bookColorSchema.background
+        transitionView.lowerColor = self.bookColorSchema.background
         
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(restartAnimation))
         swapContainerView.isUserInteractionEnabled = true
@@ -70,7 +71,6 @@ class BookSwapViewController: UIViewController {
         
         myBookPlaceholderView.layer.addSublayer(myBookPlaceholderLayer)
         bookPlaceholderView.layer.addSublayer(bookPlaceholderLayer)
-        
 
         self.myBookNameLabel.text = self.myBookModel.name
         self.myBookAuthorLabel.text = self.myBookModel.author
@@ -114,8 +114,8 @@ class BookSwapViewController: UIViewController {
         bookQuoteView.setupInitialAnimationState()
         myBookQuoteView.setupInitialAnimationState()
         swapContainerView.setupInitialAnimationState()
-        dividerView.setupInitialAnimationState()
         setupPlaceholdersInitialAnimationState()
+        transitionView.setupCloseState()
     }
     
     func setupPlaceholdersInitialAnimationState() {
@@ -200,7 +200,7 @@ class BookSwapViewController: UIViewController {
         
         myBookQuoteView.startAnimation(beginTime: currentTime + 1.0)
         bookQuoteView.startAnimation(beginTime: currentTime + 1.0)
-        dividerView.startAnimation(beginTime: currentTime)
         swapContainerView.startAnimation(beginTime: currentTime + 1.5)
+        transitionView.finishAnimation(beginTime: currentTime)
     }
 }
