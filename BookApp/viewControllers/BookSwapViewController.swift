@@ -64,6 +64,8 @@ class BookSwapViewController: UIViewController {
         
         view.backgroundColor = self.bookColorSchema.background
         transitionView.lowerColor = self.bookColorSchema.background
+        swapContainerView.tintColor = self.bookColorSchema.background.darker(by: 15)
+        myBookQuoteView.indicatorColor = self.bookColorSchema.background.lighter(by: 15) ?? .black
         
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(restartAnimation))
         swapContainerView.isUserInteractionEnabled = true

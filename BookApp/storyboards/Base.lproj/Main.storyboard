@@ -429,6 +429,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Gh-yJ-l8O" userLabel="SwapButton" customClass="SwapButtonView" customModule="BookApp" customModuleProvider="target">
                                 <rect key="frame" x="92.5" y="289" width="190" height="45"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="190" id="Hfb-QI-GSt"/>
                                     <constraint firstAttribute="height" constant="45" id="Jsm-uF-bLh"/>

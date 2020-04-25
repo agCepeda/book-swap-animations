@@ -10,6 +10,11 @@ import UIKit
 
 @IBDesignable class SwapButtonView: UIView {
     
+    struct Constants {
+        static let iconSize: CGSize = .init(width: 25.0, height: 20.0)
+        static let titleHeight: CGFloat = 20.0
+    }
+    
     enum State {
         case shown
         case hidden
@@ -30,14 +35,32 @@ import UIKit
         layer.backgroundColor = UIColor.clear.cgColor
         layer.foregroundColor = UIColor.systemBlue.cgColor
         layer.fontSize = 15.0
+        layer.contentsScale = UIScreen.main.scale
+        layer.font = UIFont.systemFont(ofSize: 15.0, weight: .bold)
         return layer
     } ()
     
+    lazy var maskIcon: CALayer = {
+        let mask = CALayer()
+        mask.contents = UIImage(systemName: "arrow.2.circlepath")?.cgImage
+        return mask
+    }()
+    
     lazy var icon: CALayer = {
         let layer = CALayer()
-        layer.contents = UIImage(systemName: "arrow.2.circlepath")?.cgImage
+        
+        
+        layer.mask = self.maskIcon
+        
         return layer
     } ()
+    
+    override var tintColor: UIColor! {
+        didSet {
+            self.icon.backgroundColor = self.tintColor.cgColor
+            self.titleLabel.foregroundColor = self.tintColor.cgColor
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -68,12 +91,20 @@ import UIKit
     
     func adjustInRect(_ rect: CGRect) {
         background.cornerRadius = rect.height / 2
-        icon.frame = .init(origin: .init(x: 10.0, y: 10.0), size: .init(width: 30.0, height: 25.0))
-        titleLabel.frame = .init(
-            origin: .init(
-                x: 0.0, y: (rect.height - 20.0) / 2.0),
-            size: .init(
-                width: rect.width, height: 20.0
+        icon.frame = CGRect(
+            origin: CGPoint(
+                x: 10.0,
+                y: (rect.height - Constants.iconSize.height) * 0.5
+            ),
+            size: Constants.iconSize)
+        maskIcon.frame = CGRect(origin: .zero, size: Constants.iconSize)
+        titleLabel.frame = CGRect(
+            origin: CGPoint(
+                x: 0.0,
+                y: (rect.height - Constants.titleHeight) / 2.0),
+            size: CGSize(
+                width: rect.width,
+                height: Constants.titleHeight
             )
         )
         switch state {
@@ -85,8 +116,8 @@ import UIKit
             icon.opacity = 1.0
         case .hidden:
             background.frame = CGRect(
-                origin: .init(x: (rect.width - rect.height) / 2, y: 0.0),
-                size: .init(width: rect.height, height: rect.height)
+                origin: CGPoint(x: (rect.width - rect.height) / 2, y: 0.0),
+                size: CGSize(width: rect.height, height: rect.height)
             )
             background.opacity = 0.0
             titleLabel.opacity = 0.0
@@ -167,21 +198,12 @@ import UIKit
         transform.fillMode = .forwards
         transform.isRemovedOnCompletion = false
         
-//        let bounds = CABasicAnimation(keyPath: "bounds.size.width")
-//        bounds.fromValue = 45.0
-//        bounds.toValue = 190
-//        bounds.duration = 0.3
-//        bounds.beginTime = 0.3
-//        bounds.fillMode = .forwards
-//        bounds.isRemovedOnCompletion = false
-        
         let cornerRadius = CAKeyframeAnimation(keyPath: "cornerRadius")
         cornerRadius.values =  [
             CGFloat(5.0),
             CGFloat(22.5),
             CGFloat(22.5)
         ]
-//        bounds.toValue = 190
         cornerRadius.duration = 0.7
         cornerRadius.beginTime = 0.0
         cornerRadius.fillMode = .forwards
@@ -193,7 +215,6 @@ import UIKit
             CGSize(width: 45.0, height: 45.0),
             CGSize(width: 190.0, height: 45.0)
         ]
-//        bounds.toValue = 190
         bounds.duration = 0.7
         bounds.beginTime = 0.0
         bounds.fillMode = .forwards
