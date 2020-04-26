@@ -9,6 +9,6 @@ The animation is inspired in one of the designs of Tubik.
 ## Implementation
 To make this implementation i used Core Graphics, Core Animation and UIKit. 
 
-|   |   |   |
+|Preview 1| Preview 2|Preview 3|
 |---|---|---|
 |![Preview No. 1](/images/preview1.png)|![Preview No. 2](/images/preview2.png)| ![Preview No. 3](/images/preview3.png)|
