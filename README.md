@@ -4,6 +4,9 @@ This is an example of how to use Core Animation with Core Graphics to make trans
 
 The animation is inspired in one of the designs of Tubik.
 
+Original design: https://dribbble.com/shots/3563019-Book-Swap-App-Interactions
+
+
 [![Book Swap Animation - iOS Swift](http://img.youtube.com/vi/e3hG9C1z2bs/0.jpg)](https://www.youtube.com/watch?v=e3hG9C1z2bs "Book Swap Animation - iOS Swift")
 
 ## Implementation
